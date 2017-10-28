@@ -60,8 +60,8 @@
 		"timer": "",
 		"oldrc": false,
 		"name": "git-commit",
-		"x": 684,
-		"y": 203,
+		"x": 673,
+		"y": 129,
 		"wires": [
 			[
 				"a42fbe68.efc41"
