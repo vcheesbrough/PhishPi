@@ -6,8 +6,8 @@
 		"name": "SaveFlows",
 		"path": "/home/pi/dev/PhishPi/admin",
 		"enabled": false,
-		"x": 444,
-		"y": 163,
+		"x": 577,
+		"y": 140,
 		"wires": [
 			[
 				"87d820d2.53a47"
@@ -41,11 +41,11 @@
 		"func": "if (msg.payload.commitmsg){\n    msg.commitmsg = msg.payload.commitmsg;\n}\n\nmsg.flowId = 'all';\n\nreturn msg;",
 		"outputs": 1,
 		"noerr": 0,
-		"x": 304,
-		"y": 163,
+		"x": 310,
+		"y": 160,
 		"wires": [
 			[
-				"1490bdf4.fd53a2"
+				"93ba273d.d6ad38"
 			]
 		]
 	},
@@ -60,8 +60,8 @@
 		"timer": "",
 		"oldrc": false,
 		"name": "git-commit",
-		"x": 674,
-		"y": 132,
+		"x": 961,
+		"y": 192,
 		"wires": [
 			[
 				"a42fbe68.efc41"
@@ -77,11 +77,11 @@
 		"type": "function",
 		"z": "f50acb9a.b2c468",
 		"name": "set-commit-message",
-		"func": "if (msg.commitmsg){\n    msg.payload = '\\\"' + msg.commitmsg + '\\\"';\n} else {\n    msg.payload = '\\\"auto commit ' + (new Date()) + '\\\"';\n}\nreturn msg;",
+		"func": "if (msg.commitmsg){\n    msg.payload = '\\\"' + msg.commitmsg + '\\\" '+msg.findArgs;\n} else {\n    msg.payload = '\\\"auto commit ' + (new Date()) + '\\\"'+msg.findArgs;\n}\nreturn msg;",
 		"outputs": 1,
 		"noerr": 0,
-		"x": 535,
-		"y": 267,
+		"x": 774,
+		"y": 124,
 		"wires": [
 			[
 				"b6248c24.70c9f"
@@ -100,8 +100,8 @@
 		"label": "Stdout Result:",
 		"format": "{{msg.payload}}",
 		"layout": "col-center",
-		"x": 885,
-		"y": 121,
+		"x": 1064,
+		"y": 80,
 		"wires": []
 	},
 	{
@@ -116,8 +116,8 @@
 		"label": "Stderr Result:",
 		"format": "{{msg.payload}}",
 		"layout": "col-center",
-		"x": 909,
-		"y": 209,
+		"x": 1027,
+		"y": 315,
 		"wires": []
 	},
 	{
@@ -148,6 +148,35 @@
 		"wires": [
 			[
 				"e0d94cd0.d066f"
+			]
+		]
+	},
+	{
+		"id": "93ba273d.d6ad38",
+		"type": "getflows",
+		"z": "f50acb9a.b2c468",
+		"name": "",
+		"x": 333,
+		"y": 264,
+		"wires": [
+			[
+				"b8723415.8b3948"
+			]
+		]
+	},
+	{
+		"id": "b8723415.8b3948",
+		"type": "function",
+		"z": "f50acb9a.b2c468",
+		"name": "Build find arguments",
+		"func": "var commandArgs = \"\";\nmsg.payload.forEach(function(entry) {\n   commandArgs += \"! -name \\\"\"+entry.label+\"\\\"* \" \n});\nmsg.findArgs = commandArgs;\nreturn msg;",
+		"outputs": 1,
+		"noerr": 0,
+		"x": 545,
+		"y": 267,
+		"wires": [
+			[
+				"1490bdf4.fd53a2"
 			]
 		]
 	}
