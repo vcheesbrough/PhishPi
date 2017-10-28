@@ -10,17 +10,17 @@
 		"width": 0,
 		"height": 0,
 		"passthru": true,
-		"topic": "manual.white",
+		"topic": "phishpi/led/white/level",
 		"min": 0,
 		"max": "100",
 		"step": 1,
-		"x": 174,
-		"y": 148,
+		"x": 549,
+		"y": 137,
 		"wires": [
 			[
 				"fe92e8c7.c5b738",
 				"7e3ed437.5442cc",
-				"40cd2b53.9ba0e4"
+				"de1bfaa7.9ad948"
 			]
 		]
 	},
@@ -46,8 +46,8 @@
 		],
 		"seg1": "",
 		"seg2": "",
-		"x": 349,
-		"y": 112,
+		"x": 547,
+		"y": 192,
 		"wires": []
 	},
 	{
@@ -72,8 +72,8 @@
 		],
 		"seg1": "",
 		"seg2": "",
-		"x": 322,
-		"y": 345,
+		"x": 549,
+		"y": 455,
 		"wires": []
 	},
 	{
@@ -87,17 +87,17 @@
 		"width": 0,
 		"height": 0,
 		"passthru": true,
-		"topic": "manual.red",
+		"topic": "phishpi/led/red/level",
 		"min": 0,
 		"max": "100",
 		"step": 1,
-		"x": 163,
-		"y": 390,
+		"x": 551,
+		"y": 392,
 		"wires": [
 			[
 				"9c87a62f.b64d68",
 				"42ade488.253d7c",
-				"40cd2b53.9ba0e4"
+				"de1bfaa7.9ad948"
 			]
 		]
 	},
@@ -112,17 +112,17 @@
 		"width": 0,
 		"height": 0,
 		"passthru": true,
-		"topic": "manual.blue",
+		"topic": "phishpi/led/blue/level",
 		"min": 0,
 		"max": "100",
 		"step": 1,
-		"x": 161,
-		"y": 630,
+		"x": 545,
+		"y": 690,
 		"wires": [
 			[
 				"5e44c7ca.791108",
 				"d2cd0d6b.ce3a3",
-				"40cd2b53.9ba0e4"
+				"de1bfaa7.9ad948"
 			]
 		]
 	},
@@ -148,8 +148,8 @@
 		],
 		"seg1": "",
 		"seg2": "",
-		"x": 323,
-		"y": 587,
+		"x": 541,
+		"y": 752,
 		"wires": []
 	},
 	{
@@ -163,13 +163,13 @@
 		"width": 0,
 		"height": 0,
 		"passthru": true,
-		"topic": "manual.white",
+		"topic": "phishpi/led/white/level",
 		"format": "{{value}}",
 		"min": 0,
 		"max": "100",
 		"step": 1,
-		"x": 169,
-		"y": 61,
+		"x": 544,
+		"y": 50,
 		"wires": [
 			[
 				"7ca34cf2.39de94"
@@ -187,13 +187,13 @@
 		"width": 0,
 		"height": 0,
 		"passthru": true,
-		"topic": "manual.red",
+		"topic": "phishpi/led/red/level",
 		"format": "{{value}}",
 		"min": 0,
 		"max": "100",
 		"step": 1,
-		"x": 166,
-		"y": 307,
+		"x": 554,
+		"y": 309,
 		"wires": [
 			[
 				"3dac4669.6f0c8a"
@@ -211,13 +211,13 @@
 		"width": 0,
 		"height": 0,
 		"passthru": true,
-		"topic": "manual.blue",
+		"topic": "phishpi/led/blue/level",
 		"format": "{{value}}",
 		"min": 0,
 		"max": "100",
 		"step": 1,
-		"x": 158,
-		"y": 541,
+		"x": 546,
+		"y": 609,
 		"wires": [
 			[
 				"8fa76acd.24b818"
@@ -225,84 +225,105 @@
 		]
 	},
 	{
-		"id": "1362a1f3.b0e97e",
-		"type": "ui_chart",
+		"id": "59c6580f.1d3898",
+		"type": "mqtt in",
 		"z": "cfb0b4d7.323e28",
 		"name": "",
-		"group": "6343ce0f.fa1a5",
-		"order": 0,
-		"width": "18",
-		"height": "6",
-		"label": "",
-		"chartType": "line",
-		"legend": "true",
-		"xformat": "HH:mm:ss",
-		"interpolate": "linear",
-		"nodata": "",
-		"dot": false,
-		"ymin": "",
-		"ymax": "",
-		"removeOlder": 1,
-		"removeOlderPoints": "",
-		"removeOlderUnit": "3600",
-		"cutout": 0,
-		"useOneColor": false,
-		"colors": [
-			"#1f77b4",
-			"#aec7e8",
-			"#ff7f0e",
-			"#2ca02c",
-			"#98df8a",
-			"#d62728",
-			"#ff9896",
-			"#9467bd",
-			"#c5b0d5"
-		],
-		"useOldStyle": false,
-		"x": 1027,
-		"y": 328,
-		"wires": [
-			[],
-			[]
-		]
-	},
-	{
-		"id": "677e202e.10b56",
-		"type": "msg-resend",
-		"z": "cfb0b4d7.323e28",
-		"interval": 5,
-		"maximum": "0",
-		"bytopic": true,
-		"clone": false,
-		"name": "",
-		"x": 824.5,
-		"y": 354,
+		"topic": "phishpi/led/white/level",
+		"qos": "1",
+		"broker": "427a94f5.0e39bc",
+		"x": 105,
+		"y": 138,
 		"wires": [
 			[
-				"1362a1f3.b0e97e"
+				"c8291699.427598"
 			]
 		]
 	},
 	{
-		"id": "40cd2b53.9ba0e4",
-		"type": "delay",
+		"id": "c8291699.427598",
+		"type": "json",
 		"z": "cfb0b4d7.323e28",
 		"name": "",
-		"pauseType": "timed",
-		"timeout": "5",
-		"timeoutUnits": "seconds",
-		"rate": "1",
-		"nbRateUnits": "5",
-		"rateUnits": "second",
-		"randomFirst": "1",
-		"randomLast": "5",
-		"randomUnits": "seconds",
-		"drop": true,
-		"x": 613,
-		"y": 355,
+		"pretty": false,
+		"x": 320,
+		"y": 138,
 		"wires": [
 			[
-				"677e202e.10b56"
+				"7ca34cf2.39de94"
+			]
+		]
+	},
+	{
+		"id": "de1bfaa7.9ad948",
+		"type": "mqtt out",
+		"z": "cfb0b4d7.323e28",
+		"name": "",
+		"topic": "",
+		"qos": "1",
+		"retain": "true",
+		"broker": "427a94f5.0e39bc",
+		"x": 1011,
+		"y": 400,
+		"wires": []
+	},
+	{
+		"id": "345b088c.b21328",
+		"type": "json",
+		"z": "cfb0b4d7.323e28",
+		"name": "",
+		"pretty": false,
+		"x": 327,
+		"y": 391,
+		"wires": [
+			[
+				"3dac4669.6f0c8a"
+			]
+		]
+	},
+	{
+		"id": "3c6d4a22.802256",
+		"type": "mqtt in",
+		"z": "cfb0b4d7.323e28",
+		"name": "",
+		"topic": "phishpi/led/red/level",
+		"qos": "1",
+		"broker": "427a94f5.0e39bc",
+		"x": 109,
+		"y": 391,
+		"wires": [
+			[
+				"345b088c.b21328"
+			]
+		]
+	},
+	{
+		"id": "affa678.6318a98",
+		"type": "mqtt in",
+		"z": "cfb0b4d7.323e28",
+		"name": "",
+		"topic": "phishpi/led/blue/level",
+		"qos": "1",
+		"broker": "427a94f5.0e39bc",
+		"x": 117,
+		"y": 684,
+		"wires": [
+			[
+				"e5e44c75.5cb87"
+			]
+		]
+	},
+	{
+		"id": "e5e44c75.5cb87",
+		"type": "json",
+		"z": "cfb0b4d7.323e28",
+		"name": "",
+		"pretty": false,
+		"x": 336,
+		"y": 684,
+		"wires": [
+			[
+				"8fa76acd.24b818"
 			]
 		]
 	}

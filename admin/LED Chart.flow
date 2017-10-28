@@ -1,0 +1,114 @@
+[
+	{
+		"id": "e991010b.be809",
+		"type": "mqtt in",
+		"z": "f927715f.18e58",
+		"name": "",
+		"topic": "phishpi/led/+/level",
+		"qos": "1",
+		"broker": "427a94f5.0e39bc",
+		"x": 147,
+		"y": 123,
+		"wires": [
+			[
+				"da41802d.05078"
+			]
+		]
+	},
+	{
+		"id": "da41802d.05078",
+		"type": "json",
+		"z": "f927715f.18e58",
+		"name": "",
+		"pretty": false,
+		"x": 329,
+		"y": 122,
+		"wires": [
+			[
+				"3504821b.49c72e"
+			]
+		]
+	},
+	{
+		"id": "3504821b.49c72e",
+		"type": "delay",
+		"z": "f927715f.18e58",
+		"name": "",
+		"pauseType": "timed",
+		"timeout": "5",
+		"timeoutUnits": "seconds",
+		"rate": "1",
+		"nbRateUnits": "5",
+		"rateUnits": "second",
+		"randomFirst": "1",
+		"randomLast": "5",
+		"randomUnits": "seconds",
+		"drop": true,
+		"x": 511,
+		"y": 123,
+		"wires": [
+			[
+				"4a5f6f42.6ae"
+			]
+		]
+	},
+	{
+		"id": "4a5f6f42.6ae",
+		"type": "msg-resend",
+		"z": "f927715f.18e58",
+		"interval": 5,
+		"maximum": "0",
+		"bytopic": true,
+		"clone": false,
+		"name": "",
+		"x": 712.5,
+		"y": 123,
+		"wires": [
+			[
+				"5db39872.3b15d8"
+			]
+		]
+	},
+	{
+		"id": "5db39872.3b15d8",
+		"type": "ui_chart",
+		"z": "f927715f.18e58",
+		"name": "",
+		"group": "6343ce0f.fa1a5",
+		"order": 0,
+		"width": "18",
+		"height": "6",
+		"label": "",
+		"chartType": "line",
+		"legend": "true",
+		"xformat": "HH:mm:ss",
+		"interpolate": "linear",
+		"nodata": "",
+		"dot": false,
+		"ymin": "",
+		"ymax": "",
+		"removeOlder": 1,
+		"removeOlderPoints": "",
+		"removeOlderUnit": "3600",
+		"cutout": 0,
+		"useOneColor": false,
+		"colors": [
+			"#1f77b4",
+			"#aec7e8",
+			"#ff7f0e",
+			"#2ca02c",
+			"#98df8a",
+			"#d62728",
+			"#ff9896",
+			"#9467bd",
+			"#c5b0d5"
+		],
+		"useOldStyle": false,
+		"x": 875,
+		"y": 123,
+		"wires": [
+			[],
+			[]
+		]
+	}
+]
