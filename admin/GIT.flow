@@ -1,0 +1,154 @@
+[
+	{
+		"id": "1490bdf4.fd53a2",
+		"type": "saveflow",
+		"z": "f50acb9a.b2c468",
+		"name": "SaveFlows",
+		"path": "/home/pi/dev/PhishPi/admin",
+		"enabled": false,
+		"x": 444,
+		"y": 163,
+		"wires": [
+			[
+				"87d820d2.53a47"
+			]
+		]
+	},
+	{
+		"id": "19c60f30.24c611",
+		"type": "inject",
+		"z": "f50acb9a.b2c468",
+		"name": "",
+		"topic": "",
+		"payload": "",
+		"payloadType": "date",
+		"repeat": "",
+		"crontab": "",
+		"once": false,
+		"x": 174,
+		"y": 103,
+		"wires": [
+			[
+				"e0d94cd0.d066f"
+			]
+		]
+	},
+	{
+		"id": "e0d94cd0.d066f",
+		"type": "function",
+		"z": "f50acb9a.b2c468",
+		"name": "doall",
+		"func": "if (msg.payload.commitmsg){\n    msg.commitmsg = msg.payload.commitmsg;\n}\n\nmsg.flowId = 'all';\n\nreturn msg;",
+		"outputs": 1,
+		"noerr": 0,
+		"x": 304,
+		"y": 163,
+		"wires": [
+			[
+				"1490bdf4.fd53a2"
+			]
+		]
+	},
+	{
+		"id": "b6248c24.70c9f",
+		"type": "exec",
+		"z": "f50acb9a.b2c468",
+		"command": "/home/pi/dev/PhishPi/commit.sh",
+		"addpay": true,
+		"append": "",
+		"useSpawn": "false",
+		"timer": "",
+		"oldrc": false,
+		"name": "git-commit",
+		"x": 674,
+		"y": 132,
+		"wires": [
+			[
+				"a42fbe68.efc41"
+			],
+			[
+				"f427a5fc.90e248"
+			],
+			[]
+		]
+	},
+	{
+		"id": "87d820d2.53a47",
+		"type": "function",
+		"z": "f50acb9a.b2c468",
+		"name": "set-commit-message",
+		"func": "if (msg.commitmsg){\n    msg.payload = '\\\"' + msg.commitmsg + '\\\"';\n} else {\n    msg.payload = '\\\"auto commit ' + (new Date()) + '\\\"';\n}\nreturn msg;",
+		"outputs": 1,
+		"noerr": 0,
+		"x": 535,
+		"y": 267,
+		"wires": [
+			[
+				"b6248c24.70c9f"
+			]
+		]
+	},
+	{
+		"id": "a42fbe68.efc41",
+		"type": "ui_text",
+		"z": "f50acb9a.b2c468",
+		"group": "388b2937.e25e76",
+		"order": 2,
+		"width": "6",
+		"height": "4",
+		"name": "",
+		"label": "Stdout Result:",
+		"format": "{{msg.payload}}",
+		"layout": "col-center",
+		"x": 885,
+		"y": 121,
+		"wires": []
+	},
+	{
+		"id": "f427a5fc.90e248",
+		"type": "ui_text",
+		"z": "f50acb9a.b2c468",
+		"group": "388b2937.e25e76",
+		"order": 3,
+		"width": "6",
+		"height": "4",
+		"name": "",
+		"label": "Stderr Result:",
+		"format": "{{msg.payload}}",
+		"layout": "col-center",
+		"x": 909,
+		"y": 209,
+		"wires": []
+	},
+	{
+		"id": "a625a7b7.361ba8",
+		"type": "ui_form",
+		"z": "f50acb9a.b2c468",
+		"name": "",
+		"label": "",
+		"group": "388b2937.e25e76",
+		"order": 1,
+		"width": "0",
+		"height": "0",
+		"options": [
+			{
+				"label": "Commit Message",
+				"value": "commitmsg",
+				"type": "text",
+				"required": true
+			}
+		],
+		"formValue": {
+			"commitmsg": ""
+		},
+		"payload": "",
+		"topic": "",
+		"x": 144,
+		"y": 163,
+		"wires": [
+			[
+				"e0d94cd0.d066f"
+			]
+		]
+	}
+]
