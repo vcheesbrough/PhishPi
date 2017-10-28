@@ -1,0 +1,129 @@
+[
+	{
+		"id": "4cc2be1e.11562",
+		"type": "inject",
+		"z": "bd766deb.53632",
+		"name": "",
+		"topic": "",
+		"payload": "",
+		"payloadType": "str",
+		"repeat": "",
+		"crontab": "",
+		"once": true,
+		"x": 169,
+		"y": 160,
+		"wires": [
+			[
+				"bb2b28ba.d82658"
+			]
+		]
+	},
+	{
+		"id": "bb2b28ba.d82658",
+		"type": "exec",
+		"z": "bd766deb.53632",
+		"command": "sudo journalctl -u nodered -f -n 25 -o cat",
+		"addpay": false,
+		"append": "",
+		"useSpawn": "true",
+		"timer": "",
+		"oldrc": false,
+		"name": "",
+		"x": 406,
+		"y": 188,
+		"wires": [
+			[
+				"70c66ed3.c74be"
+			],
+			[
+				"70c66ed3.c74be"
+			],
+			[]
+		]
+	},
+	{
+		"id": "b20b2a97.72fdc8",
+		"type": "ui_template",
+		"z": "bd766deb.53632",
+		"group": "df0ac960.257a98",
+		"name": "Untitled Theme 1",
+		"order": 1,
+		"width": "",
+		"height": "",
+		"format": "<div ng-repeat=\"line in msg.payload track by $index\">\n  <div ng-style=\"{'margin-bottom':'1em'}\">{{line}}</div>\n</div>",
+		"storeOutMessages": false,
+		"fwdInMessages": false,
+		"templateScope": "local",
+		"x": 915,
+		"y": 151,
+		"wires": [
+			[]
+		]
+	},
+	{
+		"id": "70c66ed3.c74be",
+		"type": "function",
+		"z": "bd766deb.53632",
+		"name": "Accumulate",
+		"func": "// Use a fn context variable to track\n// the output lines\nif ( msg.payload === false ) {\n    // This lets us reset the log list\n    // if we want to, just inject a false payload\n    var lines = [];\n} else {\n    var lines = context.get('jrnlLines')|| [];\n\n    // Add the new output TO THE START\n    // so that the latest output is at the top\n    // of the displayed page\n    \n    // BUT we only want to display ACTUAL\n    // NR log output not all the other stuff\n    // that the journal outputs. Actual NR log\n    // output starts with a date (numeric)\n    if ( isNaN(parseInt(msg.payload.substr(0,1))) ) {\n        // Not numeric at start so not NR output\n        // ignore\n    } else {\n        lines.unshift(msg.payload);\n    }\n    \n    // # lines could get VERY large so cause memory\n    // issues, limit to 200\n    if ( lines.length > 200 ) {\n        // too big so drop the last element\n        lines.pop();\n    }\n}\n\n// save the total output in the context var\ncontext.set('jrnlLines',lines);\n\n// output all the lines to the UI template\nmsg.payload = lines;\n\nreturn msg;",
+		"outputs": 1,
+		"noerr": 0,
+		"x": 704,
+		"y": 229,
+		"wires": [
+			[
+				"b20b2a97.72fdc8",
+				"23d830b8.6b4c4"
+			]
+		]
+	},
+	{
+		"id": "23d830b8.6b4c4",
+		"type": "debug",
+		"z": "bd766deb.53632",
+		"name": "",
+		"active": false,
+		"console": "false",
+		"complete": "false",
+		"x": 887,
+		"y": 276,
+		"wires": []
+	},
+	{
+		"id": "f531ae70.59fb2",
+		"type": "inject",
+		"z": "bd766deb.53632",
+		"name": "",
+		"topic": "",
+		"payload": "false",
+		"payloadType": "bool",
+		"repeat": "",
+		"crontab": "",
+		"once": false,
+		"x": 526,
+		"y": 292,
+		"wires": [
+			[
+				"70c66ed3.c74be"
+			]
+		]
+	},
+	{
+		"id": "b399de42.515cc",
+		"type": "comment",
+		"z": "bd766deb.53632",
+		"name": "Output Node-Red log to Dashboard (UI)",
+		"info": "See http://flows.nodered.org/flow/6dc1a137075ad93cd7c00224681afeda",
+		"x": 545,
+		"y": 143,
+		"wires": []
+	},
+	{
+		"id": "b577d863.e67c08",
+		"type": "ui_tab",
+		"z": "bd766deb.53632",
+		"name": "Pi NR Log",
+		"icon": "dashboard",
+		"order": 4
+	}
+]

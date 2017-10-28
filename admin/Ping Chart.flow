@@ -1,0 +1,283 @@
+[
+	{
+		"id": "a1df672f.8b61f8",
+		"type": "smooth",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"action": "mean",
+		"count": "60",
+		"round": "",
+		"mult": "multi",
+		"x": 320,
+		"y": 40,
+		"wires": [
+			[
+				"673b1e20.6bf45"
+			]
+		]
+	},
+	{
+		"id": "518697b.3ffae68",
+		"type": "ping",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"host": "www.google.com",
+		"timer": "1",
+		"x": 99.5,
+		"y": 107.77778625488281,
+		"wires": [
+			[
+				"a1df672f.8b61f8",
+				"56743b0a.9ce774"
+			]
+		]
+	},
+	{
+		"id": "56743b0a.9ce774",
+		"type": "ui_chart",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"group": "a08fb1c4.56f07",
+		"order": 1,
+		"width": 0,
+		"height": 0,
+		"label": "Ping",
+		"chartType": "line",
+		"legend": "true",
+		"xformat": "HH:mm:ss",
+		"interpolate": "linear",
+		"nodata": "",
+		"dot": false,
+		"ymin": "",
+		"ymax": "",
+		"removeOlder": 1,
+		"removeOlderPoints": "",
+		"removeOlderUnit": "3600",
+		"cutout": 0,
+		"useOneColor": false,
+		"colors": [
+			"#060606",
+			"#2fbbb4",
+			"#ff7f0e",
+			"#2ca02c",
+			"#98df8a",
+			"#d62728",
+			"#ff9896",
+			"#9467bd",
+			"#c5b0d5"
+		],
+		"useOldStyle": false,
+		"x": 787,
+		"y": 119,
+		"wires": [
+			[],
+			[]
+		]
+	},
+	{
+		"id": "fcd06700.c93328",
+		"type": "ui_button",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"group": "a08fb1c4.56f07",
+		"order": 2,
+		"width": 0,
+		"height": 0,
+		"passthru": false,
+		"label": "Reset",
+		"color": "",
+		"bgcolor": "",
+		"icon": "",
+		"payload": "[]",
+		"payloadType": "json",
+		"topic": "",
+		"x": 490,
+		"y": 140,
+		"wires": [
+			[
+				"56743b0a.9ce774"
+			]
+		]
+	},
+	{
+		"id": "673b1e20.6bf45",
+		"type": "change",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"rules": [
+			{
+				"t": "change",
+				"p": "topic",
+				"pt": "msg",
+				"from": "^(.*)$",
+				"fromt": "re",
+				"to": "$1 (smooth)",
+				"tot": "str"
+			}
+		],
+		"action": "",
+		"property": "",
+		"from": "",
+		"to": "",
+		"reg": false,
+		"x": 510,
+		"y": 40,
+		"wires": [
+			[
+				"56743b0a.9ce774"
+			]
+		]
+	},
+	{
+		"id": "92dea351.ddacf",
+		"type": "Uptime",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"x": 359,
+		"y": 235,
+		"wires": [
+			[
+				"3e8c47b2.3e9d98"
+			]
+		]
+	},
+	{
+		"id": "3e8c47b2.3e9d98",
+		"type": "function",
+		"z": "c7bd24e8.ff1668",
+		"name": "Convert to Hours",
+		"func": "var date = new Date(null);\n    date.setSeconds(msg.payload.uptime); // specify value for SECONDS here\n    msg.payload = date.toISOString().substr(11, 8);\nreturn msg;",
+		"outputs": 1,
+		"noerr": 0,
+		"x": 608,
+		"y": 234,
+		"wires": [
+			[
+				"f27665a9.db7448"
+			]
+		]
+	},
+	{
+		"id": "69baa711.ed0ff8",
+		"type": "inject",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"topic": "uptimetick",
+		"payload": "",
+		"payloadType": "date",
+		"repeat": "1",
+		"crontab": "",
+		"once": true,
+		"x": 135,
+		"y": 231,
+		"wires": [
+			[
+				"92dea351.ddacf"
+			]
+		]
+	},
+	{
+		"id": "f27665a9.db7448",
+		"type": "ui_text",
+		"z": "c7bd24e8.ff1668",
+		"group": "266d7f95.22c97",
+		"order": 1,
+		"width": 0,
+		"height": 0,
+		"name": "",
+		"label": "Uptime",
+		"format": "{{msg.payload}}",
+		"layout": "col-center",
+		"x": 849,
+		"y": 322,
+		"wires": []
+	},
+	{
+		"id": "416f100b.b1b72",
+		"type": "exec",
+		"z": "c7bd24e8.ff1668",
+		"command": "sudo poweroff #",
+		"addpay": false,
+		"append": "",
+		"useSpawn": "",
+		"timer": "",
+		"oldrc": false,
+		"name": "turn off Pi",
+		"x": 547,
+		"y": 383,
+		"wires": [
+			[],
+			[],
+			[]
+		]
+	},
+	{
+		"id": "1c452fe5.16988",
+		"type": "ui_button",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"group": "266d7f95.22c97",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"passthru": false,
+		"label": "Shutdown Pi",
+		"color": "",
+		"bgcolor": "",
+		"icon": "",
+		"payload": "",
+		"payloadType": "str",
+		"topic": "",
+		"x": 270,
+		"y": 391,
+		"wires": [
+			[
+				"416f100b.b1b72"
+			]
+		]
+	},
+	{
+		"id": "1b7cc573.8f66fb",
+		"type": "ui_button",
+		"z": "c7bd24e8.ff1668",
+		"name": "",
+		"group": "266d7f95.22c97",
+		"order": 2,
+		"width": 0,
+		"height": 0,
+		"passthru": false,
+		"label": "Reboot Pi",
+		"color": "",
+		"bgcolor": "",
+		"icon": "",
+		"payload": "",
+		"payloadType": "str",
+		"topic": "",
+		"x": 269,
+		"y": 461,
+		"wires": [
+			[
+				"4049f671.85b4f8"
+			]
+		]
+	},
+	{
+		"id": "4049f671.85b4f8",
+		"type": "exec",
+		"z": "c7bd24e8.ff1668",
+		"command": "sudo shutdown -r now #",
+		"addpay": false,
+		"append": "",
+		"useSpawn": "",
+		"timer": "",
+		"oldrc": false,
+		"name": "Reboot",
+		"x": 566,
+		"y": 467,
+		"wires": [
+			[],
+			[],
+			[]
+		]
+	}
+]

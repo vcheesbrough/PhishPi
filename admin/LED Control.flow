@@ -1,0 +1,309 @@
+[
+	{
+		"id": "7ca34cf2.39de94",
+		"type": "ui_slider",
+		"z": "cfb0b4d7.323e28",
+		"name": "White Slider",
+		"label": "",
+		"group": "81ab0b7.e8829f8",
+		"order": 2,
+		"width": 0,
+		"height": 0,
+		"passthru": true,
+		"topic": "manual.white",
+		"min": 0,
+		"max": "100",
+		"step": 1,
+		"x": 174,
+		"y": 148,
+		"wires": [
+			[
+				"fe92e8c7.c5b738",
+				"7e3ed437.5442cc",
+				"40cd2b53.9ba0e4"
+			]
+		]
+	},
+	{
+		"id": "7e3ed437.5442cc",
+		"type": "ui_gauge",
+		"z": "cfb0b4d7.323e28",
+		"name": "White Gauge",
+		"group": "81ab0b7.e8829f8",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"gtype": "gage",
+		"title": "",
+		"label": "%",
+		"format": "{{value}}",
+		"min": 0,
+		"max": "100",
+		"colors": [
+			"#ffffff",
+			"#ffffff",
+			"#ffffff"
+		],
+		"seg1": "",
+		"seg2": "",
+		"x": 349,
+		"y": 112,
+		"wires": []
+	},
+	{
+		"id": "9c87a62f.b64d68",
+		"type": "ui_gauge",
+		"z": "cfb0b4d7.323e28",
+		"name": "Red Gauge",
+		"group": "f0957928.1fe8b8",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"gtype": "gage",
+		"title": "",
+		"label": "%",
+		"format": "{{value}}",
+		"min": 0,
+		"max": "100",
+		"colors": [
+			"#ff0000",
+			"#ff0000",
+			"#ff0000"
+		],
+		"seg1": "",
+		"seg2": "",
+		"x": 322,
+		"y": 345,
+		"wires": []
+	},
+	{
+		"id": "3dac4669.6f0c8a",
+		"type": "ui_slider",
+		"z": "cfb0b4d7.323e28",
+		"name": "Red Slider",
+		"label": "",
+		"group": "f0957928.1fe8b8",
+		"order": 2,
+		"width": 0,
+		"height": 0,
+		"passthru": true,
+		"topic": "manual.red",
+		"min": 0,
+		"max": "100",
+		"step": 1,
+		"x": 163,
+		"y": 390,
+		"wires": [
+			[
+				"9c87a62f.b64d68",
+				"42ade488.253d7c",
+				"40cd2b53.9ba0e4"
+			]
+		]
+	},
+	{
+		"id": "8fa76acd.24b818",
+		"type": "ui_slider",
+		"z": "cfb0b4d7.323e28",
+		"name": "Blue Slider",
+		"label": "",
+		"group": "21d6f2df.e6adfe",
+		"order": 2,
+		"width": 0,
+		"height": 0,
+		"passthru": true,
+		"topic": "manual.blue",
+		"min": 0,
+		"max": "100",
+		"step": 1,
+		"x": 161,
+		"y": 630,
+		"wires": [
+			[
+				"5e44c7ca.791108",
+				"d2cd0d6b.ce3a3",
+				"40cd2b53.9ba0e4"
+			]
+		]
+	},
+	{
+		"id": "5e44c7ca.791108",
+		"type": "ui_gauge",
+		"z": "cfb0b4d7.323e28",
+		"name": "Blue Gauge",
+		"group": "21d6f2df.e6adfe",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"gtype": "gage",
+		"title": "",
+		"label": "%",
+		"format": "{{value}}",
+		"min": 0,
+		"max": "100",
+		"colors": [
+			"#0000ff",
+			"#0000ff",
+			"#0000ff"
+		],
+		"seg1": "",
+		"seg2": "",
+		"x": 323,
+		"y": 587,
+		"wires": []
+	},
+	{
+		"id": "fe92e8c7.c5b738",
+		"type": "ui_numeric",
+		"z": "cfb0b4d7.323e28",
+		"name": "White Numeric",
+		"label": "",
+		"group": "81ab0b7.e8829f8",
+		"order": 1,
+		"width": 0,
+		"height": 0,
+		"passthru": true,
+		"topic": "manual.white",
+		"format": "{{value}}",
+		"min": 0,
+		"max": "100",
+		"step": 1,
+		"x": 169,
+		"y": 61,
+		"wires": [
+			[
+				"7ca34cf2.39de94"
+			]
+		]
+	},
+	{
+		"id": "42ade488.253d7c",
+		"type": "ui_numeric",
+		"z": "cfb0b4d7.323e28",
+		"name": "Red Numeric",
+		"label": "",
+		"group": "f0957928.1fe8b8",
+		"order": 1,
+		"width": 0,
+		"height": 0,
+		"passthru": true,
+		"topic": "manual.red",
+		"format": "{{value}}",
+		"min": 0,
+		"max": "100",
+		"step": 1,
+		"x": 166,
+		"y": 307,
+		"wires": [
+			[
+				"3dac4669.6f0c8a"
+			]
+		]
+	},
+	{
+		"id": "d2cd0d6b.ce3a3",
+		"type": "ui_numeric",
+		"z": "cfb0b4d7.323e28",
+		"name": "Blue Numeric",
+		"label": "",
+		"group": "21d6f2df.e6adfe",
+		"order": 1,
+		"width": 0,
+		"height": 0,
+		"passthru": true,
+		"topic": "manual.blue",
+		"format": "{{value}}",
+		"min": 0,
+		"max": "100",
+		"step": 1,
+		"x": 158,
+		"y": 541,
+		"wires": [
+			[
+				"8fa76acd.24b818"
+			]
+		]
+	},
+	{
+		"id": "1362a1f3.b0e97e",
+		"type": "ui_chart",
+		"z": "cfb0b4d7.323e28",
+		"name": "",
+		"group": "6343ce0f.fa1a5",
+		"order": 0,
+		"width": "18",
+		"height": "6",
+		"label": "",
+		"chartType": "line",
+		"legend": "true",
+		"xformat": "HH:mm:ss",
+		"interpolate": "linear",
+		"nodata": "",
+		"dot": false,
+		"ymin": "",
+		"ymax": "",
+		"removeOlder": 1,
+		"removeOlderPoints": "",
+		"removeOlderUnit": "3600",
+		"cutout": 0,
+		"useOneColor": false,
+		"colors": [
+			"#1f77b4",
+			"#aec7e8",
+			"#ff7f0e",
+			"#2ca02c",
+			"#98df8a",
+			"#d62728",
+			"#ff9896",
+			"#9467bd",
+			"#c5b0d5"
+		],
+		"useOldStyle": false,
+		"x": 1027,
+		"y": 328,
+		"wires": [
+			[],
+			[]
+		]
+	},
+	{
+		"id": "677e202e.10b56",
+		"type": "msg-resend",
+		"z": "cfb0b4d7.323e28",
+		"interval": 5,
+		"maximum": "0",
+		"bytopic": true,
+		"clone": false,
+		"name": "",
+		"x": 824.5,
+		"y": 354,
+		"wires": [
+			[
+				"1362a1f3.b0e97e"
+			]
+		]
+	},
+	{
+		"id": "40cd2b53.9ba0e4",
+		"type": "delay",
+		"z": "cfb0b4d7.323e28",
+		"name": "",
+		"pauseType": "timed",
+		"timeout": "5",
+		"timeoutUnits": "seconds",
+		"rate": "1",
+		"nbRateUnits": "5",
+		"rateUnits": "second",
+		"randomFirst": "1",
+		"randomLast": "5",
+		"randomUnits": "seconds",
+		"drop": true,
+		"x": 613,
+		"y": 355,
+		"wires": [
+			[
+				"677e202e.10b56"
+			]
+		]
+	}
+]

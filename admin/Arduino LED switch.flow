@@ -1,0 +1,48 @@
+[
+	{
+		"id": "dfa8dfe8.93708",
+		"type": "ui_switch",
+		"z": "a21919c7.600c78",
+		"name": "",
+		"label": "Arduino LED",
+		"group": "266d7f95.22c97",
+		"order": 0,
+		"width": 0,
+		"height": 0,
+		"passthru": true,
+		"decouple": "false",
+		"topic": "",
+		"style": "",
+		"onvalue": "true",
+		"onvalueType": "bool",
+		"onicon": "",
+		"oncolor": "",
+		"offvalue": "false",
+		"offvalueType": "bool",
+		"officon": "",
+		"offcolor": "",
+		"x": 131,
+		"y": 85,
+		"wires": [
+			[
+				"2d0a9183.4cabae"
+			]
+		]
+	},
+	{
+		"id": "2d0a9183.4cabae",
+		"type": "gpio out",
+		"z": "a21919c7.600c78",
+		"name": "",
+		"state": "OUTPUT",
+		"pin": "13",
+		"i2cDelay": "0",
+		"i2cAddress": "",
+		"i2cRegister": "",
+		"outputs": 0,
+		"board": "43ddffec.a5e22",
+		"x": 408,
+		"y": 108,
+		"wires": []
+	}
+]
