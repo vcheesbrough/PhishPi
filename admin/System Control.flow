@@ -1,0 +1,154 @@
+[
+	{
+		"id": "347b9d9.3453362",
+		"type": "inject",
+		"z": "3582be7a.8b8132",
+		"name": "",
+		"topic": "uptimetick",
+		"payload": "",
+		"payloadType": "date",
+		"repeat": "1",
+		"crontab": "",
+		"once": true,
+		"x": 162,
+		"y": 92,
+		"wires": [
+			[
+				"74a2ebe6.424154"
+			]
+		]
+	},
+	{
+		"id": "74a2ebe6.424154",
+		"type": "Uptime",
+		"z": "3582be7a.8b8132",
+		"name": "",
+		"x": 386,
+		"y": 96,
+		"wires": [
+			[
+				"d095948f.f0ce78"
+			]
+		]
+	},
+	{
+		"id": "d095948f.f0ce78",
+		"type": "function",
+		"z": "3582be7a.8b8132",
+		"name": "Convert to Hours",
+		"func": "var date = new Date(null);\n    date.setSeconds(msg.payload.uptime); // specify value for SECONDS here\n    msg.payload = date.toISOString().substr(11, 8);\nreturn msg;",
+		"outputs": 1,
+		"noerr": 0,
+		"x": 635,
+		"y": 95,
+		"wires": [
+			[
+				"a0af7a58.4053f8"
+			]
+		]
+	},
+	{
+		"id": "a0af7a58.4053f8",
+		"type": "ui_text",
+		"z": "3582be7a.8b8132",
+		"group": "266d7f95.22c97",
+		"order": 1,
+		"width": 0,
+		"height": 0,
+		"name": "",
+		"label": "Uptime",
+		"format": "{{msg.payload}}",
+		"layout": "col-center",
+		"x": 876,
+		"y": 183,
+		"wires": []
+	},
+	{
+		"id": "14d7175.c7c9ee9",
+		"type": "exec",
+		"z": "3582be7a.8b8132",
+		"command": "sudo poweroff #",
+		"addpay": false,
+		"append": "",
+		"useSpawn": "",
+		"timer": "",
+		"oldrc": false,
+		"name": "turn off Pi",
+		"x": 574,
+		"y": 244,
+		"wires": [
+			[],
+			[],
+			[]
+		]
+	},
+	{
+		"id": "7f5f39c5.dd7b28",
+		"type": "ui_button",
+		"z": "3582be7a.8b8132",
+		"name": "",
+		"group": "266d7f95.22c97",
+		"order": 3,
+		"width": 0,
+		"height": 0,
+		"passthru": false,
+		"label": "Shutdown Pi",
+		"color": "",
+		"bgcolor": "",
+		"icon": "",
+		"payload": "",
+		"payloadType": "str",
+		"topic": "",
+		"x": 297,
+		"y": 252,
+		"wires": [
+			[
+				"14d7175.c7c9ee9"
+			]
+		]
+	},
+	{
+		"id": "9661d3c8.cd3b3",
+		"type": "ui_button",
+		"z": "3582be7a.8b8132",
+		"name": "",
+		"group": "266d7f95.22c97",
+		"order": 2,
+		"width": 0,
+		"height": 0,
+		"passthru": false,
+		"label": "Reboot Pi",
+		"color": "",
+		"bgcolor": "",
+		"icon": "",
+		"payload": "",
+		"payloadType": "str",
+		"topic": "",
+		"x": 296,
+		"y": 322,
+		"wires": [
+			[
+				"46925768.d290e8"
+			]
+		]
+	},
+	{
+		"id": "46925768.d290e8",
+		"type": "exec",
+		"z": "3582be7a.8b8132",
+		"command": "sudo shutdown -r now #",
+		"addpay": false,
+		"append": "",
+		"useSpawn": "",
+		"timer": "",
+		"oldrc": false,
+		"name": "Reboot",
+		"x": 593,
+		"y": 328,
+		"wires": [
+			[],
+			[],
+			[]
+		]
+	}
+]

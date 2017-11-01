@@ -11,7 +11,7 @@
 		"height": 0,
 		"passthru": true,
 		"decouple": "false",
-		"topic": "phishpi/test/led/status",
+		"topic": "/phishpi/test/led/status",
 		"style": "",
 		"onvalue": "true",
 		"onvalueType": "bool",
@@ -21,11 +21,12 @@
 		"offvalueType": "bool",
 		"officon": "",
 		"offcolor": "",
-		"x": 465,
-		"y": 306,
+		"x": 377,
+		"y": 115,
 		"wires": [
 			[
-				"792d0315.5ab38c"
+				"792d0315.5ab38c",
+				"8995eba9.186178"
 			]
 		]
 	},
@@ -41,64 +42,9 @@
 		"i2cRegister": "",
 		"outputs": 0,
 		"board": "43ddffec.a5e22",
-		"x": 886,
-		"y": 267,
+		"x": 1054,
+		"y": 187,
 		"wires": []
-	},
-	{
-		"id": "80e135fb.80c8b8",
-		"type": "debug",
-		"z": "a21919c7.600c78",
-		"name": "",
-		"active": true,
-		"console": "false",
-		"complete": "false",
-		"x": 908,
-		"y": 475,
-		"wires": []
-	},
-	{
-		"id": "3bb814ec.64570c",
-		"type": "mqtt out",
-		"z": "a21919c7.600c78",
-		"name": "",
-		"topic": "",
-		"qos": "2",
-		"retain": "true",
-		"broker": "427a94f5.0e39bc",
-		"x": 884,
-		"y": 375,
-		"wires": []
-	},
-	{
-		"id": "ec7acd03.62e3",
-		"type": "mqtt in",
-		"z": "a21919c7.600c78",
-		"name": "",
-		"topic": "phishpi/test/led/status",
-		"qos": "1",
-		"broker": "427a94f5.0e39bc",
-		"x": 116,
-		"y": 196,
-		"wires": [
-			[
-				"112c5c8f.7a2373"
-			]
-		]
-	},
-	{
-		"id": "112c5c8f.7a2373",
-		"type": "json",
-		"z": "a21919c7.600c78",
-		"name": "",
-		"pretty": false,
-		"x": 283,
-		"y": 331,
-		"wires": [
-			[
-				"dfa8dfe8.93708"
-			]
-		]
 	},
 	{
 		"id": "792d0315.5ab38c",
@@ -109,13 +55,59 @@
 		"gap": "",
 		"start": "",
 		"inout": "out",
-		"x": 674,
-		"y": 373,
+		"x": 618,
+		"y": 227,
 		"wires": [
 			[
-				"3bb814ec.64570c",
-				"80e135fb.80c8b8",
+				"68ca1e01.e8d7"
+			]
+		]
+	},
+	{
+		"id": "68ca1e01.e8d7",
+		"type": "msg-resend",
+		"z": "a21919c7.600c78",
+		"interval": "1",
+		"maximum": "0",
+		"bytopic": true,
+		"clone": false,
+		"name": "",
+		"x": 897,
+		"y": 238,
+		"wires": [
+			[
 				"2d0a9183.4cabae"
+			]
+		]
+	},
+	{
+		"id": "133a2088.c15daf",
+		"type": "inject",
+		"z": "a21919c7.600c78",
+		"name": "",
+		"topic": "/phishpi/test/led/status",
+		"payload": "init",
+		"payloadType": "str",
+		"repeat": "",
+		"crontab": "",
+		"once": true,
+		"x": 141,
+		"y": 225,
+		"wires": [
+			[
+				"8995eba9.186178"
+			]
+		]
+	},
+	{
+		"id": "8995eba9.186178",
+		"type": "subflow:7669456.965c5bc",
+		"z": "a21919c7.600c78",
+		"x": 375,
+		"y": 218,
+		"wires": [
+			[
+				"dfa8dfe8.93708"
 			]
 		]
 	}

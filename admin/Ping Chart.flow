@@ -70,7 +70,9 @@
 		"x": 787,
 		"y": 119,
 		"wires": [
-			[],
+			[
+				"e3d1dca0.71f36"
+			],
 			[]
 		]
 	},
@@ -129,155 +131,89 @@
 		]
 	},
 	{
-		"id": "92dea351.ddacf",
-		"type": "Uptime",
+		"id": "bb2f86df.c8fb98",
+		"type": "json",
 		"z": "c7bd24e8.ff1668",
 		"name": "",
-		"x": 359,
-		"y": 235,
+		"pretty": false,
+		"x": 626,
+		"y": 242,
 		"wires": [
 			[
-				"3e8c47b2.3e9d98"
+				"56743b0a.9ce774"
 			]
 		]
 	},
 	{
-		"id": "3e8c47b2.3e9d98",
-		"type": "function",
+		"id": "e3d1dca0.71f36",
+		"type": "delay",
 		"z": "c7bd24e8.ff1668",
-		"name": "Convert to Hours",
-		"func": "var date = new Date(null);\n    date.setSeconds(msg.payload.uptime); // specify value for SECONDS here\n    msg.payload = date.toISOString().substr(11, 8);\nreturn msg;",
-		"outputs": 1,
-		"noerr": 0,
-		"x": 608,
-		"y": 234,
+		"name": "",
+		"pauseType": "rate",
+		"timeout": "5",
+		"timeoutUnits": "seconds",
+		"rate": "1",
+		"nbRateUnits": "10",
+		"rateUnits": "second",
+		"randomFirst": "1",
+		"randomLast": "5",
+		"randomUnits": "seconds",
+		"drop": true,
+		"x": 977,
+		"y": 113,
 		"wires": [
 			[
-				"f27665a9.db7448"
+				"7e7e9e9a.7648"
 			]
 		]
 	},
 	{
-		"id": "69baa711.ed0ff8",
-		"type": "inject",
+		"id": "7e7e9e9a.7648",
+		"type": "file",
 		"z": "c7bd24e8.ff1668",
 		"name": "",
-		"topic": "uptimetick",
-		"payload": "",
-		"payloadType": "date",
-		"repeat": "1",
-		"crontab": "",
-		"once": true,
-		"x": 135,
-		"y": 231,
-		"wires": [
-			[
-				"92dea351.ddacf"
-			]
-		]
-	},
-	{
-		"id": "f27665a9.db7448",
-		"type": "ui_text",
-		"z": "c7bd24e8.ff1668",
-		"group": "266d7f95.22c97",
-		"order": 1,
-		"width": 0,
-		"height": 0,
-		"name": "",
-		"label": "Uptime",
-		"format": "{{msg.payload}}",
-		"layout": "col-center",
-		"x": 849,
-		"y": 322,
+		"filename": "/home/pi/.phishpi/pingcharthistory",
+		"appendNewline": true,
+		"createDir": true,
+		"overwriteFile": "true",
+		"x": 975,
+		"y": 184,
 		"wires": []
 	},
 	{
-		"id": "416f100b.b1b72",
-		"type": "exec",
-		"z": "c7bd24e8.ff1668",
-		"command": "sudo poweroff #",
-		"addpay": false,
-		"append": "",
-		"useSpawn": "",
-		"timer": "",
-		"oldrc": false,
-		"name": "turn off Pi",
-		"x": 547,
-		"y": 383,
-		"wires": [
-			[],
-			[],
-			[]
-		]
-	},
-	{
-		"id": "1c452fe5.16988",
-		"type": "ui_button",
+		"id": "ee49f9c5.934fd8",
+		"type": "file in",
 		"z": "c7bd24e8.ff1668",
 		"name": "",
-		"group": "266d7f95.22c97",
-		"order": 3,
-		"width": 0,
-		"height": 0,
-		"passthru": false,
-		"label": "Shutdown Pi",
-		"color": "",
-		"bgcolor": "",
-		"icon": "",
-		"payload": "",
-		"payloadType": "str",
-		"topic": "",
-		"x": 270,
-		"y": 391,
+		"filename": "/home/pi/.phishpi/pingcharthistory",
+		"format": "utf8",
+		"chunk": false,
+		"sendError": false,
+		"x": 361,
+		"y": 245,
 		"wires": [
 			[
-				"416f100b.b1b72"
+				"bb2f86df.c8fb98"
 			]
 		]
 	},
 	{
-		"id": "1b7cc573.8f66fb",
-		"type": "ui_button",
+		"id": "755f2c3b.bc55d4",
+		"type": "inject",
 		"z": "c7bd24e8.ff1668",
-		"name": "",
-		"group": "266d7f95.22c97",
-		"order": 2,
-		"width": 0,
-		"height": 0,
-		"passthru": false,
-		"label": "Reboot Pi",
-		"color": "",
-		"bgcolor": "",
-		"icon": "",
-		"payload": "",
-		"payloadType": "str",
+		"name": "Once a Start",
 		"topic": "",
-		"x": 269,
-		"y": 461,
+		"payload": "true",
+		"payloadType": "bool",
+		"repeat": "",
+		"crontab": "",
+		"once": true,
+		"x": 104,
+		"y": 240,
 		"wires": [
 			[
-				"4049f671.85b4f8"
+				"ee49f9c5.934fd8"
 			]
-		]
-	},
-	{
-		"id": "4049f671.85b4f8",
-		"type": "exec",
-		"z": "c7bd24e8.ff1668",
-		"command": "sudo shutdown -r now #",
-		"addpay": false,
-		"append": "",
-		"useSpawn": "",
-		"timer": "",
-		"oldrc": false,
-		"name": "Reboot",
-		"x": 566,
-		"y": 467,
-		"wires": [
-			[],
-			[],
-			[]
 		]
 	}
 ]

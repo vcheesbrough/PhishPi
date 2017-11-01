@@ -11,7 +11,8 @@
 		"y": 123,
 		"wires": [
 			[
-				"da41802d.05078"
+				"da41802d.05078",
+				"8de0aa05.582948"
 			]
 		]
 	},
@@ -38,7 +39,7 @@
 		"timeout": "5",
 		"timeoutUnits": "seconds",
 		"rate": "1",
-		"nbRateUnits": "5",
+		"nbRateUnits": "1",
 		"rateUnits": "second",
 		"randomFirst": "1",
 		"randomLast": "5",
@@ -85,8 +86,8 @@
 		"interpolate": "linear",
 		"nodata": "",
 		"dot": false,
-		"ymin": "",
-		"ymax": "",
+		"ymin": "0",
+		"ymax": "100",
 		"removeOlder": 1,
 		"removeOlderPoints": "",
 		"removeOlderUnit": "3600",
@@ -107,8 +108,108 @@
 		"x": 875,
 		"y": 123,
 		"wires": [
-			[],
+			[
+				"29a75328.0bf84c"
+			],
 			[]
 		]
+	},
+	{
+		"id": "f0f855d4.1a6a58",
+		"type": "file",
+		"z": "f927715f.18e58",
+		"name": "",
+		"filename": "/home/pi/.phishpi/ledcharthistory",
+		"appendNewline": true,
+		"createDir": true,
+		"overwriteFile": "true",
+		"x": 915,
+		"y": 326,
+		"wires": []
+	},
+	{
+		"id": "29a75328.0bf84c",
+		"type": "delay",
+		"z": "f927715f.18e58",
+		"name": "",
+		"pauseType": "rate",
+		"timeout": "5",
+		"timeoutUnits": "seconds",
+		"rate": "1",
+		"nbRateUnits": "10",
+		"rateUnits": "second",
+		"randomFirst": "1",
+		"randomLast": "5",
+		"randomUnits": "seconds",
+		"drop": true,
+		"x": 923,
+		"y": 216,
+		"wires": [
+			[
+				"f0f855d4.1a6a58"
+			]
+		]
+	},
+	{
+		"id": "ca63ca54.1ea828",
+		"type": "file in",
+		"z": "f927715f.18e58",
+		"name": "",
+		"filename": "/home/pi/.phishpi/ledcharthistory",
+		"format": "utf8",
+		"chunk": false,
+		"sendError": false,
+		"x": 380,
+		"y": 268,
+		"wires": [
+			[
+				"60c874a7.68256c"
+			]
+		]
+	},
+	{
+		"id": "60c874a7.68256c",
+		"type": "json",
+		"z": "f927715f.18e58",
+		"name": "",
+		"pretty": false,
+		"x": 619,
+		"y": 263,
+		"wires": [
+			[
+				"5db39872.3b15d8"
+			]
+		]
+	},
+	{
+		"id": "a7f3a8bd.bc0a98",
+		"type": "inject",
+		"z": "f927715f.18e58",
+		"name": "Once at start",
+		"topic": "",
+		"payload": "true",
+		"payloadType": "bool",
+		"repeat": "",
+		"crontab": "",
+		"once": true,
+		"x": 110,
+		"y": 271,
+		"wires": [
+			[
+				"ca63ca54.1ea828"
+			]
+		]
+	},
+	{
+		"id": "8de0aa05.582948",
+		"type": "debug",
+		"z": "f927715f.18e58",
+		"name": "",
+		"active": true,
+		"console": "false",
+		"complete": "false",
+		"x": 859,
+		"y": 70,
+		"wires": []
 	}
 ]
